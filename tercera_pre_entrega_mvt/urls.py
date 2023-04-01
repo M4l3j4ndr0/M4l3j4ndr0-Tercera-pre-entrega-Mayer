@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from tercera_pre_entrega.views import mostrar_mi_template
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('mi-template',mostrar_mi_template)
 ]
