@@ -1,3 +1,4 @@
 from django.contrib import admin
+from tercera_pre_entrega.models import Post
 
-# Register your models here.
+admin.site.register(Post)
