@@ -1,0 +1,15 @@
+{% extends 'tercera_pre_entrega/base.html'%}
+
+
+{%block titulo%} Listado de Notas {%endblock%}
+
+{%block listado%}
+
+<form action="{% url 'notas-create' %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Guardar">
+</form>
+{% endblock %}
+
+{% block title %} Notas {% endblock %}

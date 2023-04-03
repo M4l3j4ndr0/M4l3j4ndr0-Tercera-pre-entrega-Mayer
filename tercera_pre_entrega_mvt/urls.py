@@ -14,10 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from tercera_pre_entrega.views import mostrar_mi_template
+from django.urls import path, include
+from tercera_pre_entrega.views import mostrar_notas, alta_notas
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('mi-template',mostrar_mi_template)
+    path('notas/',mostrar_notas, name = "notas"),
+    path('notas/create',alta_notas, name = "notas-create"),
 ]
