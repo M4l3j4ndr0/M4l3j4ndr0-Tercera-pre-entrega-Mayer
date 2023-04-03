@@ -1,7 +1,33 @@
 # Tercera pre entrega de curso coder python 40425
-Texto de ejemplo
 
-credenciales de user
+## credenciales de user:
 
-usr: admin
-pw: 1234
+    usr: admin
+    pw: 1234
+
+## Urls declaradas:
+    {URL}/admin/ → Se utiliza para acceder al módulo de admin con las credenciales anteriormente mencionadas. Están todos los modelos activos disponibles para ABM
+    
+    {URL}/notas/ → Lista todas las notas sin filtro
+    {URL}/notas/create  → Alta de registros de notas en la BD
+    {URL}/notas/list → Lista todas las notas con filtro
+
+    {URL}/usuarios/ →  Lista todos los usuarios sin filtro
+    {URL}/usuarios/create → Alta de registros de usuarios en la BD
+    {URL}/usuarios/list → Lista todas las notas con filtro
+
+    {URL}/elementos/ →  Lista todos los elementos sin filtro
+    {URL}/elementos/create → Alta de registros de elementos en la BD
+    {URL}/elementos/list → Lista todas las notas con filtro
+
+## Models:
+Se pueden visualizar todas las clases
+
+## Views:
+Se pueden visualizar todas las vistas y sus respectivos metodos
+
+## Templates:
+Dentro de templates se encuentra cada uno de los html a mostrar dependiendo la llamada realizada
+
+## Forms:
+Se pueden visualizar los formularios declarados.
