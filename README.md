@@ -20,6 +20,11 @@
     {URL}/elementos/create → Alta de registros de elementos en la BD
     {URL}/elementos/list → Lista todas las notas con filtro
 
+## Pasos para probar.
+1. Realizar una carga de registros por admin o por {URL}/{modulo}/create, ej:  {URL}/notas/create
+2. Verificar si el registro se cargó correctamente con {URL}/{modulo}, ej: {URL}/notas/
+3. Buscar registros deseados dentro de la BD con {URL}/{modulo}/list, ej: {URL}/notas/list
+
 ## Models:
 Se pueden visualizar todas las clases
 
