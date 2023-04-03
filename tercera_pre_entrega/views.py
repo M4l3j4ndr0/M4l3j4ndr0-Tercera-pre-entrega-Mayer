@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from tercera_pre_entrega.models import Notas, Usuario
-from tercera_pre_entrega.forms import NotasForm
+from tercera_pre_entrega.models import Notas, Usuario, Elementos
+from tercera_pre_entrega.forms import NotasForm, BuscarNotasForm, UsuariosForm,BuscarUsuariosForm, ElementosForm, BuscarElementosForm
 from django.views.generic import ListView
 
 def mostrar_notas(request):
@@ -28,4 +28,87 @@ def alta_notas(request):
     context["notas"] = Notas.objects.all()
     context["total_notas"] = len(Notas.objects.all())
 
-    return render(request, "tercera_pre_entrega/notas-create.html", context)
+    return render(request, "tercera_pre_entrega/notas_create.html", context)
+
+
+class BuscarNotas(ListView):
+    model = Notas
+    context_object_name = "notas"
+
+    def get_queryset(self):
+        f = BuscarNotasForm(self.request.GET)
+        if f.is_valid():
+            return Notas.objects.filter(materia__icontains = f.data["criterio_materia"]).all()
+        return Notas.objects.none()
+    
+
+
+def mostrar_usuarios(request):
+    
+    usuarios = Usuario.objects.all()
+    total_usuarios = len(usuarios)
+    context = {
+        "usuarios": usuarios, 
+        "total_usuarios":total_usuarios,
+        "form": UsuariosForm(),
+    }
+    return render(request, "tercera_pre_entrega/usuarios.html", context)
+
+def alta_usuarios(request):
+    f = UsuariosForm(request.POST)
+    context = {
+        "form": f
+    }
+    if f.is_valid():
+        Usuario(usuario = f.data["usuario"], nombre = f.data["nombre"], apellido = f.data["apellido"], fecha_nacimiento = f.data["fecha_nacimiento"]).save()
+        context["form"] = NotasForm()
+
+    context["usuarios"] = Usuario.objects.all()
+    context["total_usuarios"] = len(Usuario.objects.all())
+
+    return render(request, "tercera_pre_entrega/usuario_create.html", context)
+
+class BuscarUsuarios(ListView):
+    model = Usuario
+    context_object_name = "usuarios"
+
+    def get_queryset(self):
+        f = BuscarUsuariosForm(self.request.GET)
+        if f.is_valid():
+            return Usuario.objects.filter(usuario__icontains = f.data["criterio_usuario"]).all()
+        return Usuario.objects.none()
+    
+def mostrar_elementos(request):
+    
+    elementos = Elementos.objects.all()
+    total_elementos = len(elementos)
+    context = {
+        "elementos": elementos, 
+        "total_elementos":total_elementos,
+        "form": ElementosForm(),
+    }
+    return render(request, "tercera_pre_entrega/elementos.html", context)
+
+def alta_elementos(request):
+    f = ElementosForm(request.POST)
+    context = {
+        "form": f
+    }
+    if f.is_valid():
+        Elementos(elemento = f.data["elemento"], tipo = f.data["tipo"], categoria = f.data["categoria"]).save()
+        context["form"] = ElementosForm()
+
+    context["elementos"] = Elementos.objects.all()
+    context["total_elementos"] = len(Elementos.objects.all())
+
+    return render(request, "tercera_pre_entrega/elementos_create.html", context)
+
+class BuscarElementos(ListView):
+    model = Elementos
+    context_object_name = "elementos"
+
+    def get_queryset(self):
+        f = BuscarElementosForm(self.request.GET)
+        if f.is_valid():
+            return Elementos.objects.filter(categoria__icontains = f.data["criterio_categoria"]).all()
+        return Elementos.objects.none()

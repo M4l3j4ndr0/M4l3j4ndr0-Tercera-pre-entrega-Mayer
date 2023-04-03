@@ -15,10 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from tercera_pre_entrega.views import mostrar_notas, alta_notas
+from tercera_pre_entrega.views import mostrar_notas, alta_notas, BuscarNotas, mostrar_usuarios, alta_usuarios, BuscarUsuarios, mostrar_elementos, alta_elementos, BuscarElementos
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('notas/',mostrar_notas, name = "notas"),
     path('notas/create',alta_notas, name = "notas-create"),
+    path('notas/list', BuscarNotas.as_view(), name = "notas-list"),
+    path('usuarios/',mostrar_usuarios, name = "usuarios"),
+    path('usuarios/create',alta_usuarios, name = "usuarios-create"),
+    path('usuarios/list', BuscarUsuarios.as_view(), name = "usuarios-list"),
+    path('elementos/',mostrar_elementos, name = "elementos"),
+    path('elementos/create',alta_elementos, name = "elementos-create"),
+    path('elementos/list', BuscarElementos.as_view(), name = "categoria-list"),
 ]
